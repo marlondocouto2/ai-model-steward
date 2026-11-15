@@ -1,0 +1,64 @@
+{
+  "cutoff": "2024-04-05",
+  "dev_end": "2024-02-09",
+  "mode": "replay",
+  "champion": {
+    "family": "xgboost",
+    "features": [
+      "fx_returns",
+      "volatility",
+      "dollar_index",
+      "markup",
+      "calendar",
+      "lagged_residuals"
+    ],
+    "train_window": "all",
+    "refit_days": 30,
+    "halflife": 10,
+    "params": {
+      "n_estimators": 250.0,
+      "max_depth": 4.0,
+      "learning_rate": 0.015110309038630188,
+      "subsample": 0.7541477629968335,
+      "colsample_bytree": 0.8800458793849719,
+      "min_child_weight": 4.040558640518603,
+      "reg_lambda": 8.199649514547062
+    }
+  },
+  "used": {
+    "backtest": 14,
+    "tune": 1,
+    "promote": 1
+  },
+  "submissions": 1,
+  "status": "submitted",
+  "promotion": {
+    "config": {
+      "family": "xgboost",
+      "features": [
+        "fx_returns",
+        "markup",
+        "lagged_residuals"
+      ],
+      "train_window": "all",
+      "refit_days": 7,
+      "halflife": 20,
+      "params": {}
+    },
+    "passed": true
+  },
+  "decision": "switch",
+  "first_try": true,
+  "new_champion": {
+    "family": "xgboost",
+    "features": [
+      "fx_returns",
+      "markup",
+      "lagged_residuals"
+    ],
+    "train_window": "all",
+    "refit_days": 7,
+    "halflife": 20,
+    "params": {}
+  }
+}

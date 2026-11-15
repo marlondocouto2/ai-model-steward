@@ -1,0 +1,16 @@
+{
+  "family": "xgboost",
+  "features": ["fx_returns", "volatility", "dollar_index", "markup", "calendar", "lagged_residuals"],
+  "train_window": "all",
+  "refit_days": 30,
+  "halflife": 10,
+  "params": {
+    "n_estimators": 250,
+    "max_depth": 4,
+    "learning_rate": 0.015110309038630188,
+    "subsample": 0.7541477629968335,
+    "colsample_bytree": 0.8800458793849719,
+    "min_child_weight": 4.040558640518603,
+    "reg_lambda": 8.199649514547062
+  }
+}

@@ -1,0 +1,21 @@
+{
+ "method": "automation",
+ "cutoff": "2025-05-02",
+ "status": "submitted",
+ "decision": "keep",
+ "first_try": true,
+ "submissions": 1,
+ "used_backtest": 14,
+ "used_tune": 1,
+ "used_promote": 1,
+ "proposed": "xgboost[fx,mk,lag] tuned all refit7 hl10",
+ "rule_passed": false,
+ "chosen": "xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",
+ "start_future_mae_bps": 46.39,
+ "chosen_future_mae_bps": 46.39,
+ "proposed_future_mae_bps": 46.19,
+ "start_future_mae_usd": 326634,
+ "chosen_future_mae_usd": 326634,
+ "proposed_future_mae_usd": 324892,
+ "chosen_future_breach_rate": 0.041
+}

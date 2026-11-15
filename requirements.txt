@@ -1,0 +1,13 @@
+fx-margin-forecaster @ git+https://github.com/marlondocouto2/fx-margin-forecaster@4ecccf0106d6f3e6c508c795461789159a4b21aa
+holidays==0.108
+lightgbm==4.7.0
+matplotlib==3.11.2
+numpy==2.5.4
+optuna==5.0.0
+pandas==3.1.1
+pydantic==2.14.3
+pytest==9.2.0
+requests==2.34.2
+scikit-learn==1.9.1
+scipy==1.18.1
+xgboost==3.4.1

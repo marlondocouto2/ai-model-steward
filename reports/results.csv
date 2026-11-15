@@ -1,0 +1,4 @@
+method,weeks,switches,promotion_tests,future_MAE_bps,future_MAE_usd,change_vs_never_pct,if_rule_ignored_MAE_bps,if_rule_ignored_MAE_usd,weeks_better_than_never,weeks_worse_than_never,memo_first_try_pass_rate,escalations
+never,136,0,0,52.825,375952,0.0,52.825,375952,0,0,1.0,0
+scripted,136,1,101,52.825,375958,-0.001,53.388,378534,1,0,1.0,0
+automation,136,11,126,52.851,376136,0.048,53.011,376053,5,6,1.0,0
