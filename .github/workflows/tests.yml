@@ -1,0 +1,22 @@
+name: tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: pytest -q
+      - name: Dry run with the scripted brain (no AI, no API key)
+        run: python scripts/run_week.py --brain scripted --cutoff 2025-03-07
+      - name: Agent pull requests only touch the champion, reports, runs and data
+        if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'review-')
+        run: |
+          git fetch origin "${{ github.base_ref }}"
+          bad=$(git diff --name-only "origin/${{ github.base_ref }}"...HEAD | grep -vE '^(champion\.json|reports/weekly/|runs/|data/fred/)' || true)
+          if [ -n "$bad" ]; then echo "Agent PR touches files it may not change:"; echo "$bad"; exit 1; fi

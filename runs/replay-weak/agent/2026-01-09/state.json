@@ -1,0 +1,45 @@
+{
+  "cutoff": "2026-01-09",
+  "dev_end": "2025-11-14",
+  "mode": "replay",
+  "champion": {
+    "family": "ewma",
+    "features": [],
+    "train_window": "all",
+    "refit_days": 30,
+    "halflife": 10,
+    "params": {}
+  },
+  "used": {
+    "backtest": 8,
+    "tune": 1,
+    "promote": 1
+  },
+  "submissions": 1,
+  "status": "submitted",
+  "promotion": {
+    "config": {
+      "family": "ridge",
+      "features": [
+        "markup"
+      ],
+      "train_window": "all",
+      "refit_days": 30,
+      "halflife": 10,
+      "params": {}
+    },
+    "passed": true
+  },
+  "decision": "switch",
+  "first_try": true,
+  "new_champion": {
+    "family": "ridge",
+    "features": [
+      "markup"
+    ],
+    "train_window": "all",
+    "refit_days": 30,
+    "halflife": 10,
+    "params": {}
+  }
+}

@@ -1,0 +1,1 @@
+Keep (memo accepted on the first submit): the champion stays xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10, since none of the 6 backtested alternatives beat it, so I skipped tuning and the promotion test.

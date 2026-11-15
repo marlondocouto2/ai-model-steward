@@ -1,0 +1,1 @@
+Kept the champion, `ewma all refit30 hl10`: the challenger `ridge_mk_lr` was 12.78% more accurate but failed promotion because its 5% risk band was breached on 11.3% of days (limit 9%); the memo was accepted on the second submission.

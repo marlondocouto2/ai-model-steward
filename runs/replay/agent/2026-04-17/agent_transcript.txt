@@ -1,0 +1,1 @@
+Keep: the champion stays `xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10`; the memo was accepted on the first try, after 6 of 15 backtests, no tuning and no promotion test because no candidate beat it in development.

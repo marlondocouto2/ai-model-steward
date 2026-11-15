@@ -1,0 +1,1 @@
+I kept the champion, xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10: none of the 6 configs I tested beat it by the 1% bar, so I skipped the promotion test, and the memo was accepted on the first submit.

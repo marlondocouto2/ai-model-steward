@@ -1,0 +1,1 @@
+Switch: the new champion is ridge[mk] all refit30 hl10, which passed the promotion test (6.29% lower error, p-value 0.042) and was accepted on the first submit.

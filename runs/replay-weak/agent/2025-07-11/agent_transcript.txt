@@ -1,0 +1,1 @@
+Keep: champion stays `ewma all refit30 hl10` (the LightGBM challenger cut error by 1.08% in the promotion test but failed the significance check, p 0.457; memo accepted on the first submit).

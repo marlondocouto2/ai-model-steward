@@ -1,0 +1,1 @@
+Switch: the new champion is `lightgbm[mk,lag] tuned 1y refit7 hl5`, which passed the promotion test with 5.09% lower error (p=0.01); the memo was accepted on the first submit.

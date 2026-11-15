@@ -9,3 +9,4 @@ data/cache/
 runs/**/preds/
 runs/CURRENT
 recommendation.json
+runs/replay*/**/configs/

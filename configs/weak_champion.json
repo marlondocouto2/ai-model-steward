@@ -1,0 +1,6 @@
+{
+  "family": "ewma",
+  "train_window": "all",
+  "refit_days": 30,
+  "halflife": 10
+}

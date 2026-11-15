@@ -1,0 +1,1 @@
+Keep: the champion stays `ewma all refit30 hl10`, because the markup-ridge challenger (`ridge_m`) failed its promotion test (p-value 0.387, 12.3% breach rate) and the memo was accepted.

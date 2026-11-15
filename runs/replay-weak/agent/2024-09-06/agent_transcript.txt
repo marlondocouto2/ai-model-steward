@@ -1,0 +1,1 @@
+Keep: champion stays `ewma all refit30 hl10`, since the challenger `ridge_mvl` was 10.01% worse in the promotion test.

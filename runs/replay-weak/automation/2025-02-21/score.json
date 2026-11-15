@@ -1,0 +1,21 @@
+{
+ "method": "automation",
+ "cutoff": "2025-02-21",
+ "status": "submitted",
+ "decision": "keep",
+ "first_try": true,
+ "submissions": 1,
+ "used_backtest": 14,
+ "used_tune": 1,
+ "used_promote": 1,
+ "proposed": "ridge[fx,dxy,mk] tuned all refit7 hl20",
+ "rule_passed": false,
+ "chosen": "ewma all refit30 hl10",
+ "start_future_mae_bps": 75.46,
+ "chosen_future_mae_bps": 75.46,
+ "proposed_future_mae_bps": 68.82,
+ "start_future_mae_usd": 521448,
+ "chosen_future_mae_usd": 521448,
+ "proposed_future_mae_usd": 484877,
+ "chosen_future_breach_rate": 0.065
+}

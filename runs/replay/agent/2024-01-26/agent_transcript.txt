@@ -1,0 +1,1 @@
+Keep the champion, xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10: no challenger beat it by 1%, so no promotion test was run (6 of 15 backtests used; memo accepted on the second submit).

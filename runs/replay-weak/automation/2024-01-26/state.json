@@ -1,0 +1,54 @@
+{
+  "cutoff": "2024-01-26",
+  "dev_end": "2023-12-01",
+  "mode": "replay",
+  "champion": {
+    "family": "ewma",
+    "features": [],
+    "train_window": "all",
+    "refit_days": 30,
+    "halflife": 10,
+    "params": {}
+  },
+  "used": {
+    "backtest": 14,
+    "tune": 1,
+    "promote": 1
+  },
+  "submissions": 1,
+  "status": "submitted",
+  "promotion": {
+    "config": {
+      "family": "xgboost",
+      "features": [
+        "fx_returns",
+        "volatility",
+        "dollar_index",
+        "markup"
+      ],
+      "train_window": "3y",
+      "refit_days": 7,
+      "halflife": 5,
+      "params": {
+        "n_estimators": 221.0,
+        "max_depth": 4.0,
+        "learning_rate": 0.020407,
+        "subsample": 0.878118,
+        "colsample_bytree": 0.764531,
+        "min_child_weight": 22.482561,
+        "reg_lambda": 3.443413
+      }
+    },
+    "passed": false
+  },
+  "decision": "keep",
+  "first_try": true,
+  "new_champion": {
+    "family": "ewma",
+    "features": [],
+    "train_window": "all",
+    "refit_days": 30,
+    "halflife": 10,
+    "params": {}
+  }
+}

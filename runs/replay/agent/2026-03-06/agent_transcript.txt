@@ -1,0 +1,1 @@
+Keep the champion, xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10 (memo accepted on the second try after rewording one claim; no promotion test run, 6 of 15 backtests and no tunes used).

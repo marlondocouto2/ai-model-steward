@@ -1,0 +1,1 @@
+I kept the champion, `ewma all refit30 hl10`, because the challenger `ridge_m_all` failed the promotion test (L13) on its risk band, not its accuracy.
