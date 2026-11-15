@@ -15,7 +15,7 @@ REPO="$(cd "$(dirname "$0")/.." && pwd)"
 PY="$REPO/.venv/bin/python"
 CUTOFF="${1:-}"
 PROMPT="Do this week's model review. Follow AGENT.md exactly. Start by reading it."
-TOOLS=(--allowedTools "Read(AGENT.md)" "Bash(python -m steward:*)" "Write(recommendation.json)"
+TOOLS=(--allowedTools "Read(AGENT.md)" "Bash(python -m steward:*)" "Edit(recommendation.json)"
        --disallowedTools "WebFetch" "WebSearch" --max-turns 60)
 
 if [[ -z "$CUTOFF" ]]; then

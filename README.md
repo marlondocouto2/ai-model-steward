@@ -31,8 +31,17 @@ Before any AI, the replay already gives two answers:
   - Automation's 11 switches split 5 better and 6 worse.
   - In the volatile summer of 2024, blocked proposals would have added up to 9 bps of error.
 
-The AI agent runs on 16 sampled weeks (see [The AI agent](#the-ai-agent)). The baselines'
-results on those same weeks are in `reports/results_agent_weeks.csv`, ready for the comparison.
+**The AI agent behaved like a cautious analyst.** On 16 sampled weeks it kept the champion every
+time, never spent its promotion test, and used about 6 of its 15 backtests a week. On those
+same weeks:
+- the playbook proposed 10 challengers, and 7 would have done worse;
+- automation proposed 14, and 8 would have done worse.
+
+All four methods ended level, because none of them switched on these weeks. So the agent
+avoided the bad proposals with less compute, but this test can't show it *adding* accuracy:
+there was little to gain here (see [The AI agent](#the-ai-agent)).
+
+![The 16 weeks sampled for the AI agent](reports/figures/results_agent_weeks.png)
 
 ![Week by week](reports/figures/timeline.png)
 
@@ -125,10 +134,39 @@ The agent is [Claude Code](https://code.claude.com/docs) running headless with
   prices or other weeks' results.
 
 The agent is evaluated on 16 weeks sampled evenly from calm, normal and volatile markets
-(`reports/agent_weeks.txt`), a few at a time:
+(`reports/agent_weeks.txt`), compared with the baselines on the same weeks
+(`reports/results_agent_weeks.csv`):
+
+| Method | Switches | Proposals (promotion tests) | Proposals that would have done worse | Future MAE (bps) | Backtests per week |
+|---|---|---|---|---|---|
+| Never retrain | 0 | 0 | – | 50.32 | 0 |
+| Scripted playbook | 0 | 10 | 7 | 50.32 | 11 |
+| Optuna automation | 0 | 14 | 8 | 50.32 | 14 |
+| AI agent | 0 | 0 | – | 50.32 | 6.25 |
+
+What the agent did well:
+- **It reads before it searches.** Each week it started with the data summary, the champion
+  report and a diagnosis, then tested targeted ideas: weekly refits, shorter windows, other
+  families, smaller feature sets.
+- **It stopped early.** When nothing beat the champion by the 1% bar, it kept it instead of
+  spending the remaining budget hunting for a lucky winner.
+- **Its memos explain the decision.** They give a diagnosis, evidence per corridor and named
+  risks. 12 of 16 passed the checks on the first try, the rest on the second, with no
+  escalations. An example is
+  [`runs/replay/agent/2024-01-26/report.md`](runs/replay/agent/2024-01-26/report.md).
+
+Caveats:
+- **Some of the caution is mine.** `AGENT.md` tells the agent that 1–2% differences are
+  often luck.
+- **Strict direction checks.** The check sometimes flags a claim that mixes directions (for
+  example "better overall, worse for India"). The agent then rewords it.
+- **No upside to find.** These weeks had nothing to gain, so the agent hasn't yet had a chance
+  to show it can find a real improvement. The next test is a weaker starting champion.
+
+Run a week yourself:
 
 ```bash
-scripts/agent_week.sh 2025-07-18          # one replayed week, in a sandbox
+scripts/agent_week.sh 2025-07-18          # one replayed week, in a sandbox (~2 minutes)
 python scripts/replay.py --score-only     # score it and update the results
 ```
 
@@ -154,7 +192,8 @@ On macOS, XGBoost and LightGBM need OpenMP: `brew install libomp`.
 
 ## What I'd do next
 
-- Run the AI agent on the 16 sampled weeks and compare it on the same weeks.
+- Start the replay from a weaker champion (say, EWMA only, or a stale config) to test whether
+  the agent finds real improvements when there are some to find.
 - Let the agent propose new features as code, reviewed in the pull request, beyond the fixed
   config space.
 - Test a longer hidden window or a sequential test, since 8 weeks gives the

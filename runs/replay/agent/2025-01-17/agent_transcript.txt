@@ -1,0 +1,1 @@
+Keep. The champion stays `xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10`: none of the 7 configs I backtested beat it, so I skipped the promotion test, and the memo was accepted on the first submit.

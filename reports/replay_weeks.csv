@@ -1,4 +1,20 @@
 method,cutoff,status,decision,first_try,submissions,used_backtest,used_tune,used_promote,proposed,rule_passed,chosen,start_future_mae_bps,chosen_future_mae_bps,proposed_future_mae_bps,start_future_mae_usd,chosen_future_mae_usd,proposed_future_mae_usd,chosen_future_breach_rate
+agent,2024-01-26,submitted,keep,False,2,6,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",38.16,38.16,,214172,214172,,0.081
+agent,2024-09-06,submitted,keep,True,1,7,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",54.07,54.07,,326642,326642,,0.07
+agent,2025-01-17,submitted,keep,True,1,7,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",64.21,64.21,,423836,423836,,0.082
+agent,2025-02-21,submitted,keep,True,1,8,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",68.92,68.92,,485241,485241,,0.102
+agent,2025-07-11,submitted,keep,True,1,6,1,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",41.87,41.87,,295721,295721,,0.037
+agent,2025-07-18,submitted,keep,True,1,6,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",41.96,41.96,,289610,289610,,0.045
+agent,2025-07-25,submitted,keep,True,1,6,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",44.81,44.81,,299657,299657,,0.049
+agent,2025-09-26,submitted,keep,True,1,7,1,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",39.23,39.23,,284564,284564,,0.024
+agent,2025-10-24,submitted,keep,True,1,5,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",40.65,40.65,,314763,314763,,0.024
+agent,2025-12-12,submitted,keep,True,1,6,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",48.59,48.59,,375971,375971,,0.086
+agent,2025-12-19,submitted,keep,False,2,7,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",53.11,53.11,,398496,398496,,0.093
+agent,2026-01-09,submitted,keep,True,1,5,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",60.98,60.98,,480175,480175,,0.098
+agent,2026-03-06,submitted,keep,False,2,5,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",57.69,57.69,,464332,464332,,0.041
+agent,2026-04-17,submitted,keep,True,1,5,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",49.1,49.1,,407758,407758,,0.012
+agent,2026-06-12,submitted,keep,False,2,8,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",43.46,43.46,,339097,339097,,0.033
+agent,2026-07-24,submitted,keep,True,1,6,0,0,,,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",58.26,58.26,,486380,486380,,0.078
 automation,2024-01-05,submitted,keep,True,1,14,1,1,"xgboost[fx,vol,dxy,mk,cal] 2y refit7 hl5",False,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",33.01,33.01,32.96,190198,190198,190213.0,0.045
 automation,2024-01-12,submitted,keep,True,1,14,1,1,"xgboost[fx,vol,dxy,mk,cal] 2y refit7 hl5",False,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",33.92,33.92,34.3,193039,193039,196244.0,0.049
 automation,2024-01-19,submitted,keep,True,1,14,1,1,"xgboost[fx,vol,dxy,mk] 3y refit7 hl5",False,"xgboost[fx,vol,dxy,mk,cal,lag] tuned all refit30 hl10",33.49,33.49,33.41,182384,182384,184215.0,0.073

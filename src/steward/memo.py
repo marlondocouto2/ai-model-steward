@@ -152,6 +152,8 @@ def submit(run: Run, source: str | Path | dict) -> dict:
             rec = Recommendation.model_validate(source)
         else:
             text = str(source)
+            if not text.lstrip().startswith("{") and not Path(source).exists():
+                raise FileNotFoundError(f"{source} not found: write the memo there first (not counted as a try)")
             text = text if text.lstrip().startswith("{") else Path(source).read_text()
             rec = Recommendation.model_validate_json(text)
         errors = check(rec, run)

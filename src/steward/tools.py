@@ -53,9 +53,10 @@ def _resolve(run: Run, arg) -> tuple[ModelConfig, str]:
     text = str(arg)
     if text == "champion":
         return run.champion, "champion"
-    saved = run.config_path(text)
-    if saved.exists():
-        return load_config(saved), text
+    if not text.lstrip().startswith("{") and len(text) < 100:
+        saved = run.config_path(text)
+        if saved.exists():
+            return load_config(saved), text
     cfg = load_config(text)
     return cfg, cfg.key()
 

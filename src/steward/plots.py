@@ -47,7 +47,7 @@ def plot_results(summary: pd.DataFrame, path: Path, title: str) -> None:
 def plot_timeline(weeks: pd.DataFrame, path: Path) -> None:
     """Week by week: how much better (below zero) or worse each method's proposal and final
     choice did than never retraining, over the following 12 weeks."""
-    methods = [m for m in ("scripted", "automation", "agent") if m in set(weeks["method"])]
+    methods = [m for m in ("scripted", "automation") if m in set(weeks["method"])]
     fig, axes = plt.subplots(len(methods), 1, figsize=(9, 2.3 * len(methods)), sharex=True, sharey=True)
     axes = [axes] if len(methods) == 1 else axes
     for ax, m in zip(axes, methods):
