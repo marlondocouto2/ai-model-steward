@@ -1,0 +1,1 @@
+**Keep**: the champion stays `ewma all refit30 hl10`. The tuned ridge (markup and volatility features) was 2.64% more accurate in the promotion test but failed it because its risk band had 0.0% breaches, below the 2–9% required.

@@ -1,0 +1,1 @@
+Keep: the challenger failed the promotion test (p = 0.262), so the champion stays `ewma all refit30 hl10`.

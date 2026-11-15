@@ -1,0 +1,30 @@
+{
+  "cutoff": "2025-12-19",
+  "dev_end": "2025-10-24",
+  "mode": "replay",
+  "champion": {
+    "family": "ewma",
+    "features": [],
+    "train_window": "all",
+    "refit_days": 30,
+    "halflife": 10,
+    "params": {}
+  },
+  "used": {
+    "backtest": 0,
+    "tune": 0,
+    "promote": 0
+  },
+  "submissions": 1,
+  "status": "submitted",
+  "decision": "keep",
+  "first_try": true,
+  "new_champion": {
+    "family": "ewma",
+    "features": [],
+    "train_window": "all",
+    "refit_days": 30,
+    "halflife": 10,
+    "params": {}
+  }
+}

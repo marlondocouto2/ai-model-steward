@@ -1,0 +1,1 @@
+Decision: keep. The champion stays "ewma all refit30 hl10" because the tuned LightGBM challenger was 7.05% better but missed the significance test (p = 0.139, needed below 0.10).

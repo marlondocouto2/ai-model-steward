@@ -37,7 +37,7 @@ def plot_results(summary: pd.DataFrame, path: Path, title: str) -> None:
     ax.set_ylim(-lim, lim)
     ax.set_ylabel("Error over the next 12 weeks\nvs never retraining (%)")
     ax.set_title(title, fontsize=11, loc="left")
-    ax.legend(frameon=False, fontsize=9, loc="lower right")
+    ax.legend(frameon=False, fontsize=9, loc="upper right" if float(min(with_rule.min(), no_rule.min())) < -0.5 else "lower right")
     ax.spines[["top", "right"]].set_visible(False)
     fig.tight_layout()
     fig.savefig(path, dpi=150)

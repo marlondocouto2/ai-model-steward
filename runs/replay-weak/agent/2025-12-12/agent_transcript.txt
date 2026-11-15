@@ -1,0 +1,1 @@
+Keep: the tuned ridge failed the promotion rule (p 0.135, breach rate 1.9%), so `ewma all refit30 hl10` stays champion.

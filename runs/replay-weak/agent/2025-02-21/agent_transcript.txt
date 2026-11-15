@@ -1,0 +1,1 @@
+Switch: the new champion is lightgbm[mk,cal,lag] tuned all refit7 hl10 (`lgb_tuned_bt`); it passed promotion with 7.72% lower error, though its breach rate of 0.087 is near the 9% limit.

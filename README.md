@@ -15,7 +15,7 @@ enforces the rules, and a human merges.
 The question: **with the same budget, does an AI agent choose better models than plain
 automation, or than never retraining at all?**
 
-## Headline result (non-AI baselines, 136 replayed weeks)
+## Headline results
 
 ![Change in future error vs never retraining](reports/figures/results.png)
 
@@ -42,6 +42,21 @@ avoided the bad proposals with less compute, but this test can't show it *adding
 there was little to gain here (see [The AI agent](#the-ai-agent)).
 
 ![The 16 weeks sampled for the AI agent](reports/figures/results_agent_weeks.png)
+
+**With a weak champion, the agent did best.** In this second test each week starts from stage
+1 only (EWMA), so there is real improvement to find:
+- the agent cut error by 2.34%, against 1.60% for the playbook and 1.48% for automation;
+- its 4 switches all helped, gaining 20.3 bps in total against 13.9 and 12.9;
+- it used about half the backtests (7.5 a week against 10 and 14).
+
+It's a small sample (4 switches), so read it as promising rather than proven.
+
+The test also exposes the rule's cost. Accepting every proposal would have cut error by 6–7%
+for every method, but an 8-week window gives the Diebold–Mariano test too little data, so it
+blocked most real gains. The same rule that protected a strong champion is too strict for a
+weak one.
+
+![Starting from a weak champion](reports/weak/figures/results.png)
 
 ![Week by week](reports/figures/timeline.png)
 
@@ -160,14 +175,41 @@ Caveats:
   often luck.
 - **Strict direction checks.** The check sometimes flags a claim that mixes directions (for
   example "better overall, worse for India"). The agent then rewords it.
-- **No upside to find.** These weeks had nothing to gain, so the agent hasn't yet had a chance
-  to show it can find a real improvement. The next test is a weaker starting champion.
+- **No upside to find.** These weeks had nothing to gain, which is why the second test
+  starts from a weak champion.
+
+### Second test: a weak champion
+
+The same 16 weeks, each starting from stage 1 only (`configs/weak_champion.json`, an EWMA with
+no machine-learning stage). Results are in `reports/weak/results.csv`; the runs are in
+`runs/replay-weak/`.
+
+| Method | Switches | Future MAE (bps) | vs never | If every proposal were accepted | Backtests per week |
+|---|---|---|---|---|---|
+| Never retrain | 0 | 54.28 | – | – | 0 |
+| Scripted playbook | 4 | 53.42 | −1.60% | −6.13% | 10 |
+| Optuna automation | 3 | 53.48 | −1.48% | −7.12% | 14 |
+| AI agent | 4 | 53.01 | **−2.34%** | −6.39% | 7.5 |
+
+- **The agent diagnosed the weakness.** It pointed to bias and weekday patterns that a
+  feature-free EWMA can't capture, and proposed a challenger every week. 15 of its 16
+  proposals did better than the champion over the following 12 weeks.
+- **It built leaner models.** The baselines mostly chose XGBoost with many feature groups. The
+  agent picked Ridge or LightGBM on the markup and lagged-residual features, the inputs
+  Project 3's SHAP analysis ranked highest. Its average proposal was about as good as the
+  baselines' (50.8 bps if all accepted, against 51.0 and 50.4).
+- **Its edge came from which proposals passed the rule.** Its 4 switches were the weeks with
+  the largest gains. With so few switches, that edge could be luck.
+- **13 of 16 memos passed on the first try**, the rest on the second. An example is
+  [`runs/replay-weak/agent/2025-02-21/report.md`](runs/replay-weak/agent/2025-02-21/report.md).
 
 Run a week yourself:
 
 ```bash
 scripts/agent_week.sh 2025-07-18          # one replayed week, in a sandbox (~2 minutes)
+scripts/agent_week.sh 2025-07-18 weak     # the same week, from the weak champion
 python scripts/replay.py --score-only     # score it and update the results
+python scripts/replay.py --scenario weak  # baselines from the weak champion, then score
 ```
 
 Live, once a week after FRED's Monday release, `scripts/agent_week.sh` with no argument runs
@@ -192,11 +234,11 @@ On macOS, XGBoost and LightGBM need OpenMP: `brew install libomp`.
 
 ## What I'd do next
 
-- Start the replay from a weaker champion (say, EWMA only, or a stale config) to test whether
-  the agent finds real improvements when there are some to find.
+- Run the agent on more weak-champion weeks (and chained week to week) to see whether its edge
+  holds with more switches.
 - Let the agent propose new features as code, reviewed in the pull request, beyond the fixed
   config space.
-- Test a longer hidden window or a sequential test, since 8 weeks gives the
-  Diebold–Mariano test little power.
+- Make the promotion rule adapt: a longer hidden window or a sequential test, since 8 weeks
+  gives the Diebold–Mariano test little power and blocked most real gains in the weak test.
 - Chain the replay week to week (each week's champion carries over) to measure cumulative
   drift.

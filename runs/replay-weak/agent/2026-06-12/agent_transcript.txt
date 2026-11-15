@@ -1,0 +1,1 @@
+Keep — champion remains `ewma all refit30 hl10` (LightGBM challenger failed all three promotion checks; memo accepted on first submit).

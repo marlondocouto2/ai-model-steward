@@ -3,6 +3,7 @@
 #
 #   scripts/agent_week.sh                 # live: this week's review, then open a pull request
 #   scripts/agent_week.sh 2025-03-07      # replay: a past week, inside a sandbox
+#   scripts/agent_week.sh 2025-03-07 weak # replay, starting from the weak champion (EWMA only)
 #
 # Replay sandbox: a temporary copy of the code with FRED data cut at the cutoff, so the agent
 # can't see later prices or other weeks' results. The finished run is copied back to
@@ -14,6 +15,8 @@ set -euo pipefail
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 PY="$REPO/.venv/bin/python"
 CUTOFF="${1:-}"
+SCENARIO="${2:-strong}"
+if [[ "$SCENARIO" == "weak" ]]; then CHAMP="weak_champion.json"; OUTDIR="replay-weak"; else CHAMP="initial_champion.json"; OUTDIR="replay"; fi
 PROMPT="Do this week's model review. Follow AGENT.md exactly. Start by reading it."
 TOOLS=(--allowedTools "Read(AGENT.md)" "Bash(python -m steward:*)" "Edit(recommendation.json)"
        --disallowedTools "WebFetch" "WebSearch" --max-turns 60)
@@ -41,15 +44,16 @@ else
   done
   cd "$SANDBOX"
   export PYTHONPATH="$SANDBOX/src" PATH="$REPO/.venv/bin:$PATH" STEWARD_RUN="$SANDBOX/run"
-  "$PY" - "$CUTOFF" <<'EOF'
+  "$PY" - "$CUTOFF" "configs/$CHAMP" <<'EOF'
 import sys
+from pathlib import Path
 import pandas as pd
 from steward.run import Run
 from steward.space import load_config
-Run.start(pd.Timestamp(sys.argv[1]), load_config("configs/initial_champion.json"), path=__import__("pathlib").Path("run"), mode="replay")
+Run.start(pd.Timestamp(sys.argv[1]), load_config(sys.argv[2]), path=Path("run"), mode="replay")
 EOF
   claude -p "$PROMPT" "${TOOLS[@]}" | tee "run/agent_transcript.txt"
-  DEST="$REPO/runs/replay/agent/$CUTOFF"
+  DEST="$REPO/runs/$OUTDIR/agent/$CUTOFF"
   rm -rf "$DEST" && mkdir -p "$(dirname "$DEST")" && cp -R run "$DEST"
   rm -rf "$DEST/preds"
   echo "Saved to $DEST. Score it with: python scripts/replay.py --score-only"

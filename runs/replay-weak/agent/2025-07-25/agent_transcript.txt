@@ -1,0 +1,1 @@
+Decision: keep. The champion stays `ewma all refit30 hl10` (the challenger `lgb_mk_vol_lr` was 4.88% worse in the promotion test).

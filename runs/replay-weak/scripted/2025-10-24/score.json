@@ -1,0 +1,21 @@
+{
+ "method": "scripted",
+ "cutoff": "2025-10-24",
+ "status": "submitted",
+ "decision": "keep",
+ "first_try": true,
+ "submissions": 1,
+ "used_backtest": 10,
+ "used_tune": 1,
+ "used_promote": 1,
+ "proposed": "ridge[fx,vol,dxy,mk,cal,lag] 3y refit30 hl5",
+ "rule_passed": false,
+ "chosen": "ewma all refit30 hl10",
+ "start_future_mae_bps": 43.26,
+ "chosen_future_mae_bps": 43.26,
+ "proposed_future_mae_bps": 41.26,
+ "start_future_mae_usd": 331980,
+ "chosen_future_mae_usd": 331980,
+ "proposed_future_mae_usd": 318887,
+ "chosen_future_breach_rate": 0.061
+}

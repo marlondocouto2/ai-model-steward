@@ -23,6 +23,12 @@ from .space import HALFLIVES, ModelConfig, load_config
 
 INITIAL_CHAMPION = ROOT / "configs" / "initial_champion.json"
 REPLAY_DIR = SETTINGS.runs_dir / "replay"
+# Scenario -> (starting champion, replay folder). "weak" starts from stage 1 only (EWMA), as if
+# the machine-learning stage had never been deployed: there is real improvement to find.
+SCENARIOS = {
+    "strong": (INITIAL_CHAMPION, REPLAY_DIR),
+    "weak": (ROOT / "configs" / "weak_champion.json", SETTINGS.runs_dir / "replay-weak"),
+}
 FIRST_WEEK = "2024-01-05"
 
 
@@ -47,14 +53,15 @@ def future_score(cfg: ModelConfig, cutoff: pd.Timestamp) -> dict:
     return out
 
 
-def run_week(method: str, cutoff: pd.Timestamp, brain=None) -> Path:
+def run_week(method: str, cutoff: pd.Timestamp, brain=None, scenario: str = "strong") -> Path:
     """Run one brain on one week (skipped if already done), then score it."""
-    path = REPLAY_DIR / method / f"{cutoff:%Y-%m-%d}"
+    champion_file, replay_dir = SCENARIOS[scenario]
+    path = replay_dir / method / f"{cutoff:%Y-%m-%d}"
     done = (path / "state.json").exists() and Run(path).state["status"] != "open"
     if brain is not None and not done:
         if path.exists():
             shutil.rmtree(path)
-        run = Run.start(cutoff, load_config(INITIAL_CHAMPION), path=path, mode="replay")
+        run = Run.start(cutoff, load_config(champion_file), path=path, mode="replay")
         brain(run)
     if (path / "state.json").exists() and Run(path).state["status"] != "open":
         score_week(Run(path), method)
@@ -86,8 +93,8 @@ def score_week(run: Run, method: str) -> dict:
     return row
 
 
-def collect() -> pd.DataFrame:
-    rows = [json.loads(p.read_text()) for p in sorted(REPLAY_DIR.glob("*/*/score.json"))]
+def collect(scenario: str = "strong") -> pd.DataFrame:
+    rows = [json.loads(p.read_text()) for p in sorted(SCENARIOS[scenario][1].glob("*/*/score.json"))]
     return pd.DataFrame(rows)
 
 
